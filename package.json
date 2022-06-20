@@ -1,0 +1,22 @@
+{
+  "name": "jsw-chat",
+  "description": "A basic chat app built with svelte.",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/jsw08/chat",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.49",
+    "svelte": "^3.48.0",
+    "vite": "^2.9.12"
+  },
+  "dependencies": {
+    "@specialdoom/proi-ui": "^2.2.2"
+  }
+}
