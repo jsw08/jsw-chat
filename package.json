@@ -16,5 +16,8 @@
     "svelte": "^3.48.0",
     "svelte-materialify": "^0.3.11",
     "vite": "^2.9.12"
+  },
+  "dependencies": {
+    "@mdi/js": "^6.7.96"
   }
 }
