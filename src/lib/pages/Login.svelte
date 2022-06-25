@@ -3,10 +3,13 @@
 </script>
 
 <form>
-<h6>JSW-CHAT</h6>
-<br>
-<TextField solo placeholder="Username" />
-<Button style="width:100%">login</Button>
+  <h6 class="font-weight-bold">JSW-CHAT</h6>
+  <br>
+  <TextField solo placeholder="Username" />
+  <div>
+    <Button class="red white-text" style="width:45%; display:inline;">cancel</Button>
+    <Button class="primary-color" style="width:45%; display:inline;">login</Button>
+  </div>
 </form>
 
 <style>
