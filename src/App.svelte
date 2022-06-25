@@ -1,7 +1,16 @@
 <script>
+  import LoginPage from './lib/pages/Login.svelte'
+  import { MaterialApp } from 'svelte-materialify'
   let login = true;
-  
 </script>
-{#if login}
-{:else}
-{/if}
+
+<MaterialApp  theme='light'>
+  <div class="app" class:center={login}>
+    {#if login}
+      <LoginPage/>
+    {:else}
+
+    {/if}
+  </div>
+</MaterialApp>
+
