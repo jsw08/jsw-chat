@@ -1,19 +1,19 @@
 <script>
   export let darkmode;
+  import { loggedIn } from '../stores.js';
   import  {Button, TextField}  from 'svelte-materialify';
-  import { createEventDispatcher } from 'svelte'
+
   
-  let usr = {name:""}
-  const dispatch = createEventDispatcher();
+  let username;
 </script>
 
 <form class:darkForm={darkmode} >
   <h6 class="font-weight-bold">JSW-CHAT</h6>
   <br>
-  <TextField solo placeholder="Username" bind:value={usr.name}/>
+  <TextField solo placeholder="Username" bind:value={username}/>
   <div>
     <Button class="red white-text" style="width:45%; display:inline;">cancel</Button>
-    <Button class="primary-color" style="width:45%; display:inline;" on:click={() => {dispatch("login", usr)}}>login</Button>
+    <Button class="primary-color" style="width:45%; display:inline;" on:click={() => {loggedIn.set(true)}}>login</Button>
   </div>
 </form>
 

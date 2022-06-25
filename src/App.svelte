@@ -2,29 +2,27 @@
   import LoginPage from './lib/pages/Login.svelte'
   import ChatPage from './lib/pages/Chat.svelte'
 
+  import { onMount } from 'svelte';
+  import { loggedIn,darkmode } from './lib/stores.js';
   import { MaterialApp, Button, Icon } from 'svelte-materialify'
-  import { mdiBrightness6, mdiYeast } from '@mdi/js';
-  import { onMount } from 'svelte'
+  import { mdiBrightness6 } from '@mdi/js';
 
+  let dmode = false
   let login = true;
-  let darkmode = true;
-  let usr = {}
-  let ls = {setItem: (y, yy) => {}};
 
-  $: setLS(darkmode)
-  let setLS = (theme) => {ls.setItem("theme", darkmode ? "darkon":"")}
+  darkmode.subscribe(v => {dmode = v})
+  loggedIn.subscribe(v => {login = v})
 
   onMount(() => {
-    ls = window.localStorage
-    darkmode = localStorage.getItem("theme") ? true:false
+    darkmode.set(localStorage.getItem("darkmode") ? true:false)
   })
 </script>
 
-<MaterialApp  theme={darkmode ? "dark":"light"}>
-  <Button style="position:absolute; right:5px; top:5px;" on:click={() => {darkmode = !darkmode}}><Icon path={mdiBrightness6}/></Button>
-  <div class="app" class:center={login}>
+<MaterialApp  theme={dmode ? "dark":"light"}>
+  <Button style="position:absolute; right:5px; top:5px;" on:click={() => {darkmode.set(!dmode)}}><Icon path={mdiBrightness6}/></Button>
+  <div class="app" class:center={loggedIn}>
     {#if login}
-      <LoginPage on:login={x => {x = x.detail; if (x.name) {usr = x; login = false;}}} darkmode={darkmode}/>
+      <LoginPage darkmode={dmode}/>
     {:else}
       <ChatPage/>
     {/if}
