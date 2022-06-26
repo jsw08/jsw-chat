@@ -11,16 +11,13 @@
   let login = true;
 
   darkmode.subscribe(v => {dmode = v})
-  loggedIn.subscribe(v => {login = v})
+  loggedIn.subscribe(vv => {login = vv})
 
-  onMount(() => {
-    darkmode.set(localStorage.getItem("darkmode") ? true:false)
-  })
 </script>
 
 <MaterialApp  theme={dmode ? "dark":"light"}>
-  <Button style="position:absolute; right:5px; top:5px;" on:click={() => {darkmode.set(!dmode)}}><Icon path={mdiBrightness6}/></Button>
-  <div class="app" class:center={loggedIn}>
+  <Button style="position:absolute; right:5px; top:5px;" on:click={() => {darkmode.set(!dmode);}}><Icon path={mdiBrightness6}/></Button>
+  <div class="app" class:center={login}>
     {#if login}
       <LoginPage darkmode={dmode}/>
     {:else}
