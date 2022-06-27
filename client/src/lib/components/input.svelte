@@ -13,7 +13,7 @@
         if (hours < 10) hours = "0" + hours;
         if (minutes < 10) minutes = "0" + minutes; 
 
-        let id = Math.random().toStraing(36).substring(1);
+        let id = Math.random().toString(36).substring(1);
         let selfmsg = {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: true}
         
         socket.emit("message",  {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: false});

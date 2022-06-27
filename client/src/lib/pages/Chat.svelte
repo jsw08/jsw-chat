@@ -15,7 +15,7 @@
     })
 </script>
 
-<div style="max-height: calc(100vh - 70px);  overflow:scroll;" >
+<div style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" >
     {#each msgs as i}
         <div style:clear="both" >
             <Bubble {i}/>
