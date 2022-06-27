@@ -1,17 +1,17 @@
 <script>
   export let darkmode;
-  import { loggedIn } from './../stores.js';
+  import { loggedIn, usr } from './../stores.js';
   import  {Button, TextField}  from 'svelte-materialify';
   let username;
 </script>
 
-<form class="elevation-5 rounded-lg" class:darkForm={darkmode} on:submit={e => {e.preventDefault(); loggedIn.set(false)}} >
+<form class="elevation-5 rounded-lg" class:darkForm={darkmode} on:submit={e => {e.preventDefault(); loggedIn.set(false); usr.set({username:username})}} >
   <h6 class="font-weight-bold">JSW-CHAT</h6>
   <br>
   <TextField solo placeholder="Username" bind:value={username}/>
   <div>
     <Button class="red white-text" style="width:45%; display:inline;">cancel</Button>
-    <Button class="primary-color" style="width:45%; display:inline;" on:click={() => {loggedIn.set(false)}}>login</Button>
+    <Button type="submit" class="primary-color" style="width:45%; display:inline;" >login</Button>
   </div>
 </form>
 
