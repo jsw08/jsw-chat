@@ -15,10 +15,9 @@
 </script>
 
 <MaterialApp style="width: 100vw; height: 100vh;" theme={dmode ? "dark":"light"}>
-  <div style:width="100vw">
-    <Button style="float:right; margin: 5px;" on:click={() => {darkmode.set(!dmode);}}><Icon path={mdiBrightness6}/></Button>
-  </div>
+
   <div class="app" class:center={login}>
+      <Button style="position: absolute; right: 0; top:0; margin: 5px;" on:click={() => {darkmode.set(!dmode);}}><Icon path={mdiBrightness6}/></Button>
     {#if login}
       <LoginPage darkmode={dmode}/>
     {:else}

@@ -9,8 +9,13 @@
     let usrname;
     usr.subscribe(v => {usrname = v.username })
     messages.subscribe(v => {msgs = v})
+
+    socket.on("bessage", (m) => {
+        messages.set([...msgs, m])
+    })
 </script>
-<div style:max-height="calc(100vh - 70px;)" >
+
+<div style="max-height: calc(100vh - 70px);  overflow:scroll;" >
     {#each msgs as i}
         <div style:clear="both" >
             <Bubble {i}/>
