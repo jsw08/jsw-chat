@@ -1,4 +1,4 @@
-<script>
+w///<script>
   import LoginPage from './lib/pages/Login.svelte'
   import ChatPage from './lib/pages/Chat.svelte'
 
