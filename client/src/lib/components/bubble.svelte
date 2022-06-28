@@ -1,22 +1,12 @@
 <script>
     export let i;
     import {encode} from 'html-entities'
+    import {parse} from './../parse.js'
 
-    i.msg = encode(i.msg)
-    const urls = i.msg.match(/\b(https?:\/\/.*?\.[a-z]{2,4}\b)/g);
-    var msg = i.msg;
-
-    if (urls) {
-        console.log(true)
-        for (let url in urls) {
-            url = urls[url]
-            console.log(url)
-            msg.replace(url, `<a href="${url}">${url}</a>`)
-        }
-    }
+    i.msg = parse(encode(i.msg)).trim()
 </script>
-<div  class:float-left={!i.fromMe} class:white-text={i.fromMe} class:primary-color={i.fromMe} class:float-right={i.fromMe} class="elevation-7 rounded-lg">
-    {@html msg}
+<div  id={i.id} class:float-left={!i.fromMe} class:white-text={i.fromMe} class:primary-color={i.fromMe} class:float-right={i.fromMe} class="elevation-7 rounded-lg">
+    {@html i.msg}
     <b style="font-size:10px;display:block;">{i.time}&nbsp;{i.usr}</b>
 </div>
 <style>

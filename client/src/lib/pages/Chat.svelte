@@ -1,8 +1,9 @@
 <script>
+    import { io } from "socket.io-client";
     import {usr, messages} from './../stores.js'
     import Input from './../components/input.svelte'
     import Bubble from './../components/bubble.svelte'
-    import { io } from "socket.io-client";
+
 
     const socket = io()
     let msgs;
@@ -12,10 +13,11 @@
 
     socket.on("bessage", (m) => {
         messages.set([...msgs, m])
+        document.querySelector(".messages").scrollTo(0, document.querySelector(".messages").scrollHeight);
     })
 </script>
 
-<div style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" >
+<div style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" class="messages">
     {#each msgs as i}
         <div style:clear="both" >
             <Bubble {i}/>
