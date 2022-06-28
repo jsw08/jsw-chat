@@ -13,7 +13,7 @@
 
     socket.on("bessage", (m) => {
         messages.set([...msgs, m])
-        document.querySelector(".messages").scrollTo(0, document.querySelector(".messages").scrollHeight);
+        document.querySelector("div").scrollTo(0, 100000);
     })
 </script>
 
@@ -36,4 +36,5 @@
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
 }
+
 </style>

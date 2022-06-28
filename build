@@ -1,6 +1,0 @@
-#!/bin/bash
-cd client
-npx vite build 
-rm -r ../server/dist 
-mv dist ../server
-

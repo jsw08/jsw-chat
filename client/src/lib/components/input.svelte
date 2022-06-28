@@ -1,4 +1,6 @@
 <script>
+    import {encode} from 'html-entities'
+    import {parse} from './../parse.js'
     import {TextField} from 'svelte-materialify'
     import {messages} from './../stores.js'
     export  let socket;;
@@ -7,20 +9,23 @@
     let value;
 
     const sendMessage = () => {
-        let time = new Date()
-        let hours = time.getHours()
-        let minutes = time.getMinutes()
-        if (hours < 10) hours = "0" + hours;
-        if (minutes < 10) minutes = "0" + minutes; 
+        if (value.trim()) {
+            let time = new Date()
+            let hours = time.getHours()
+            let minutes = time.getMinutes()
+            if (hours < 10) hours = "0" + hours;
+            if (minutes < 10) minutes = "0" + minutes; 
 
-        let id = Math.random().toString(36).substring(1);
-        let selfmsg = {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: true}
-        
-        socket.emit("message",  {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: false});
-        messages.update(i => [...i, selfmsg])
-        
-        value = ""
-
+            let id = Math.random().toString(36).substring(1);
+            value = parse(encode(value)).trim()
+            
+            // alert(value + "|")
+            let selfmsg = {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: true}        
+            socket.emit("message",  {usr: usrname.toString(), msg: value, id: id, time: hours + ":" + minutes,fromMe: false});
+            messages.update(i => [...i, selfmsg])
+            
+            value = ""
+        }
     }
     
 </script>
