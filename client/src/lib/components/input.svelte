@@ -3,7 +3,7 @@
     import {parse} from './../parse.js'
     import {TextField} from 'svelte-materialify'
     import {messages} from './../stores.js'
-    export  let socket;;
+    export  let socket;
     export let usrname;
     
     let value;

@@ -1,14 +1,20 @@
+const fs = require('fs');
+const host = fs.existsSync('./dist');
+
 const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  /* options */
-});
+const httpServer = host ? createServer(app) : createServer();
+const io = new Server(httpServer);
 
-app.use(express.static('dist'));
+if (host) {
+  app.use(express.static('dist'));
+  httpServer.listen(3000);
+} else {
+  httpServer.listen(3000);
+}
 
 io.on('connection', (socket) => {
   console.log('connected');
@@ -17,5 +23,3 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('bessage', m);
   });
 });
-
-httpServer.listen(3000);
