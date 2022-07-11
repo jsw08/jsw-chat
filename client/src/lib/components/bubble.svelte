@@ -1,9 +1,9 @@
 <script>
     export let i;
 </script>
-<div  id={i.id} class:float-left={!i.fromMe} class:white-text={i.fromMe} class:primary-color={i.fromMe} class:float-right={i.fromMe} class="elevation-7 rounded-lg">
+<div id={i.id} class:float-left={!i.fromMe} class:white-text={i.fromMe} class:primary-color={i.fromMe} class:float-right={i.fromMe} class="elevation-7 rounded-lg">
     {@html i.msg}
-    <b style="font-size:10px;display:block;">{i.time}&nbsp;{i.usr}</b>
+    <b style="font-size:10px;display:block;">{i.time}&nbsp;<i>{i.usr}</i></b>
 </div>
 <style>
     div {
@@ -13,5 +13,6 @@
         margin:  5px 20px;
         display:block;
         overflow-wrap: break-word;
+        clear: both;
     }
 </style>

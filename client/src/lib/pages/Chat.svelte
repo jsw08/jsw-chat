@@ -1,27 +1,38 @@
 <script>
+    // @ts-ignore
     import { io } from "socket.io-client";
     import {usr, messages} from './../stores.js'
     import Input from './../components/input.svelte'
     import Bubble from './../components/bubble.svelte'
-
+    import {beforeUpdate, afterUpdate} from 'svelte'
 
     const socket = io()
-    let msgs;
+    let msgs = [];
     let usrname;
+    let msgDiv;
+    let autoscroll
+    messages.subscribe(v => {msgs = v;})
     usr.subscribe(v => {usrname = v.username })
-    messages.subscribe(v => {msgs = v})
-
+ 
     socket.on("bessage", (m) => {
-        messages.set([...msgs, m])
-        document.querySelector("div").scrollTo(0, 100000);
+            messages.set([...msgs, m])
+            msgDiv.scrollTop = msgDiv.scrollHeight;  
     })
+    
+	beforeUpdate(() => {
+		autoscroll = msgDiv && (msgDiv.offsetHeight + msgDiv.scrollTop) > (msgDiv.scrollHeight - 20);
+	});
+
+	afterUpdate(() => {
+		if (autoscroll) msgDiv.scrollTo(0, msgDiv.scrollHeight);
+	});
+
+
 </script>
 
-<div style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" class="messages">
+<div bind:this={msgDiv} style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" class="messages">
     {#each msgs as i}
-        <div style:clear="both" >
-            <Bubble {i}/>
-        </div>
+        <Bubble {i}/>
     {/each}
 </div>
 <Input {socket} {usrname}/>

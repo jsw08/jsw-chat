@@ -1,6 +1,7 @@
 <script>
   export let darkmode;
   import { loggedIn, usr } from './../stores.js';
+  // @ts-ignore
   import  {Button, TextField}  from 'svelte-materialify';
   let username;
 </script>
