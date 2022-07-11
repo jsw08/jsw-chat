@@ -19,9 +19,10 @@
             msgDiv.scrollTop = msgDiv.scrollHeight;  
     })
 
-    socket.on("login", m => {
+    socket.on("login", (m) => {
       if (m) {
-        usr.set({username: usr.username, admin: true})
+        usr.set({username: Usr.username, admin: true})
+        alert("Became admin")
       }
     })
     
@@ -41,7 +42,7 @@
         <Bubble {i}/>
     {/each}
 </div>
-<Input {socket} usrname={Usr.username}}/>
+<Input {socket} usrname={Usr.username}/>
 
 <style>
 .messages::-webkit-scrollbar {
