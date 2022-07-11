@@ -8,15 +8,21 @@
 
     const socket = io()
     let msgs = [];
-    let usrname;
+    let Usr;
     let msgDiv;
     let autoscroll
     messages.subscribe(v => {msgs = v;})
-    usr.subscribe(v => {usrname = v.username })
+    usr.subscribe(v => {Usr = v })
  
-    socket.on("bessage", (m) => {
+    socket.on("bessage", m => {
             messages.set([...msgs, m])
             msgDiv.scrollTop = msgDiv.scrollHeight;  
+    })
+
+    socket.on("login", m => {
+      if (m) {
+        usr.set({username: usr.username, admin: true})
+      }
     })
     
 	beforeUpdate(() => {
@@ -35,7 +41,7 @@
         <Bubble {i}/>
     {/each}
 </div>
-<Input {socket} {usrname}/>
+<Input {socket} usrname={Usr.username}}/>
 
 <style>
 .messages::-webkit-scrollbar {

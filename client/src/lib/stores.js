@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 let dmode = localStorage.getItem('darkmode') ? true : false;
 
-export const usr = writable({ username: '' });
+export const usr = writable({ username: '', admin: false});
 export const loggedIn = writable(true);
 export const darkmode = writable(dmode);
 export const messages = writable([

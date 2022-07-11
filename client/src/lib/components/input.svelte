@@ -12,7 +12,20 @@
 
     const sendMessage = () => {
         if (value.trim()) {
-            let time = new Date()
+            if (value[0] !== "/") send()
+            else {
+                switch (value.split(" ")[0]) {
+                    case "/login":
+                        socket.emit("login",value.split(" ")[1])
+                        break;
+                }
+                value = ""
+            }
+        }
+    }
+
+    const send = () => {
+        let time = new Date()
             let hours = time.getHours().toString()
             let minutes = time.getMinutes().toString()
             if (parseInt(hours) < 10) hours = "0" + hours;
@@ -27,8 +40,8 @@
             messages.update(i => [...i, selfmsg])
             
             value = ""
-        }
     }
+    
     
 </script>
 

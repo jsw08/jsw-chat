@@ -6,7 +6,7 @@
   let username;
 </script>
 
-<form class="elevation-5 rounded-lg" class:darkForm={darkmode} on:submit={e => {e.preventDefault(); loggedIn.set(false); usr.set({username:username})}} >
+<form class="elevation-5 rounded-lg" class:darkForm={darkmode} on:submit={e => {e.preventDefault(); loggedIn.set(false); usr.set({username:username, admin:false})}} >
   <h6 class="font-weight-bold">JSW-CHAT</h6>
   <br>
   <TextField solo placeholder="Username" bind:value={username}/>
