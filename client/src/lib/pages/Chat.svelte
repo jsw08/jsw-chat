@@ -23,6 +23,8 @@
       if (m) {
         usr.set({username: Usr.username, admin: true})
         alert("Became admin")
+      } else {
+        alert("Login failed")
       }
     })
     
