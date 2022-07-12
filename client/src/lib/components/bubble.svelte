@@ -1,8 +1,7 @@
 <script>
-import type { mdiDeleteCircleOutline } from "@mdi/js";
-
     export let i;
     export let admin;
+    admin = true
     import { Icon } from "svelte-materialify";
     import { mdiDeleteCircleOutline } from "@mdi/js";
 </script>

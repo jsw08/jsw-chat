@@ -9,7 +9,7 @@
 <form class="elevation-5 rounded-lg" class:darkForm={darkmode} on:submit={e => {e.preventDefault(); loggedIn.set(false); usr.set({username:username, admin:false})}} >
   <h6 class="font-weight-bold">JSW-CHAT</h6>
   <br>
-  <TextField solo placeholder="Username" bind:value={username}/>
+  <TextField solo placeholder="Username" bind:value={username} maxlength="10"/>
   <div>
     <Button class="red white-text" style="width:45%; display:inline;">cancel</Button>
     <Button type="submit" class="primary-color" style="width:45%; display:inline;" >login</Button>
