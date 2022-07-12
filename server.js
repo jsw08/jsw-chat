@@ -25,6 +25,6 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('bessage', m);
   });
   socket.on('login', m => {
-    if (adminPasswds.includes(Buffer.from(m, 'binary').toString('base64'))) socket.emit("login", true);
+    socket.emit("login", (adminPasswds.includes(Buffer.from(m, 'binary').toString('base64'))));
   })
 });

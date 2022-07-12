@@ -11,6 +11,7 @@
     let Usr;
     let msgDiv;
     let autoscroll
+
     messages.subscribe(v => {msgs = v;})
     usr.subscribe(v => {Usr = v })
  
@@ -22,10 +23,11 @@
     socket.on("login", (m) => {
       if (m) {
         usr.set({username: Usr.username, admin: true})
-        alert("Became admin")
+        messages.set([...msgs, {"usr":"system","msg":"Became admin.","id":"","time":"Only you can see this,","fromMe":false}])
       } else {
-        alert("Login failed")
+        messages.set([...msgs, {"usr":"system","msg":"Failed to become admin.","id":"","time":"Only you can see this,","fromMe":false}])
       }
+      msgDiv.scrollTop = msgDiv.scrollHeight; 
     })
     
 	beforeUpdate(() => {
@@ -41,7 +43,7 @@
 
 <div bind:this={msgDiv} style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" class="messages">
     {#each msgs as i}
-        <Bubble {i}/>
+        <Bubble {i} admin={Usr.admin}/>
     {/each}
 </div>
 <Input {socket} usrname={Usr.username}/>
