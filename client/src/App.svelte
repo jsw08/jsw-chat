@@ -2,11 +2,9 @@
 
   import LoginPage from './lib/pages/Login.svelte'
   import ChatPage from './lib/pages/Chat.svelte'
-
+  
   import { loggedIn,darkmode } from './lib/stores.js';
-  // @ts-ignore
   import { MaterialApp, Button, Icon } from 'svelte-materialify'
-  // @ts-ignore
   import { mdiBrightness6 } from '@mdi/js';
 
   let dmode = false

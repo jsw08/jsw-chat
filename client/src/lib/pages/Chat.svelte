@@ -43,7 +43,7 @@
 
 <div bind:this={msgDiv} style="max-height: calc(100vh - 70px);  min-height: calc(100vh - 70px); overflow:auto;" class="messages">
     {#each msgs as i}
-        <Bubble {i} admin={Usr.admin}/>
+        <Bubble {i} admin={Usr.admin} {socket}/>
     {/each}
 </div>
 <Input {socket} usrname={Usr.username}/>
