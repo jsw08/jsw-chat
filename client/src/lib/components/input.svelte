@@ -24,7 +24,7 @@
                         socket.emit("login", prompt("password"))
                         break;
                     case "/delete":
-                        if (usr.admin) selectDelMode.set(true)
+                        if (true) selectDelMode.set(true)
                         break;
                     default: 
                         messages.set([...msgs, {id:"", usr:"system",msg:"That is not a valid command.",fromMe:false,time:"Only you can see this,"}])
