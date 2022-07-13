@@ -10,7 +10,7 @@ const app = express();
 const httpServer = host ? createServer(app) : createServer();
 const io = new Server(httpServer);
 
-const adminPasswds = ["a2FwdXJu"]
+const adminPasswds = ['a2FwdXJu'];
 
 if (host) {
   app.use(express.static('dist'));
@@ -29,7 +29,13 @@ io.on('connection', (socket) => {
     console.log(JSON.stringify(m));
     socket.broadcast.emit('bessage', m);
   });
-  socket.on('login', m => {
-    socket.emit("login", (adminPasswds.includes(Buffer.from(m, 'binary').toString('base64'))));
-  })
+  socket.on('login', (m) => {
+    socket.emit(
+      'login',
+      adminPasswds.includes(Buffer.from(m, 'binary').toString('base64'))
+    );
+  });
+  socket.on('delete', (id) => {
+    io.emit('delete', id);
+  });
 });

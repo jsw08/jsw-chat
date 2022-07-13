@@ -4,6 +4,7 @@
 * Marquee commands
 * Camera popup
 -[] Admin delete button
--[] admin login popup
+-[x] admin login popup
 -[x] Admin login
 -[x] Auto scroll down
+-[] fix url error

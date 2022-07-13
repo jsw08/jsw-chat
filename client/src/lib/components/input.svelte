@@ -1,17 +1,18 @@
 <script>
     export let socket;
     export let usrname;
+    
     // @ts-ignore
     import {encode} from 'html-entities'
     import {parse} from './../parse.js'
-    // @ts-ignore
     import {TextField, Dialog, Button } from 'svelte-materialify'
-    import {messages} from './../stores.js'
+    import {messages, selectDelMode, usr} from './../stores.js'
     
     let msgs;
     let value;
+    let Usr;
 
-
+    usr.subscribe(v => {Usr = v})
     messages.subscribe(m => {msgs = m})
 
     const sendMessage = () => {
@@ -21,6 +22,9 @@
                 switch (value.split(" ")[0]) {
                     case "/login":
                         socket.emit("login", prompt("password"))
+                        break;
+                    case "/delete":
+                        if (usr.admin) selectDelMode.set(true)
                         break;
                     default: 
                         messages.set([...msgs, {id:"", usr:"system",msg:"That is not a valid command.",fromMe:false,time:"Only you can see this,"}])
