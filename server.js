@@ -5,6 +5,7 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 
+const port = 3000
 const app = express();
 const httpServer = host ? createServer(app) : createServer();
 const io = new Server(httpServer);
@@ -13,10 +14,14 @@ const adminPasswds = ["a2FwdXJu"]
 
 if (host) {
   app.use(express.static('dist'));
-  httpServer.listen(3000);
+  console.log("Express server hosting folder dist.")
 } else {
-  httpServer.listen(3000);
+  console.log("Starting express server failed, no folder with the name 'dist' found in current folder.")
 }
+
+httpServer.listen(port);
+console.log(`httpServer listening on port ${port}.`)
+
 
 io.on('connection', (socket) => {
   console.log('connected');
