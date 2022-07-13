@@ -23,13 +23,18 @@
     socket.on("login", (m) => {
       if (m) {
         usr.set({username: Usr.username, admin: true})
-        messages.set([...msgs, {"usr":"system","msg":"Became admin.","id":"","time":"Only you can see this,","fromMe":false}])
+        messages.set([...msgs, {"usr":"system","msg":"Raised privileges.","id":"","time":"Only you can see this,","fromMe":false}])
       } else {
-        messages.set([...msgs, {"usr":"system","msg":"Failed to become admin.","id":"","time":"Only you can see this,","fromMe":false}])
+        messages.set([...msgs, {"usr":"system","msg":"Failed to raise privileges.","id":"","time":"Only you can see this,","fromMe":false}])
       }
       msgDiv.scrollTop = msgDiv.scrollHeight; 
     })
-    
+    socket.on("delete", id => {
+      alert("AAAA")
+      alert(id)
+      const arr = msgs.filter(i => {return i !== id})
+      messages.set(arr)
+    })
 	beforeUpdate(() => {
 		autoscroll = msgDiv && (msgDiv.offsetHeight + msgDiv.scrollTop) > (msgDiv.scrollHeight - 20);
 	});
