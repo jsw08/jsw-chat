@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
     );
   });
   socket.on('delete', (id) => {
+    console.log(`Delete ${id}`)
     io.emit('delete', id);
   });
 });

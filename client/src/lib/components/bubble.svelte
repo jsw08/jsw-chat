@@ -13,7 +13,6 @@
 <div class:float-left={!i.fromMe} class:white-text={i.fromMe} class:primary-color={i.fromMe} class:float-right={i.fromMe} class:text-align-right={i.fromMe} class="elevation-7 rounded-lg">
     {@html i.msg}
     <b style="font-size:10px;display:block;">{i.time}&nbsp;<i>{i.usr}</i></b>
-    {i.id}
     {#if admin && delmode}
         <Button on:click={() => {socket.emit("delete", i.id); selectDelMode.set(false)}}><Icon path={mdiDeleteCircleOutline}/></Button>
     {/if}

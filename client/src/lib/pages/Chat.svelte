@@ -30,9 +30,8 @@
       msgDiv.scrollTop = msgDiv.scrollHeight; 
     })
     socket.on("delete", id => {
-      alert("AAAA")
-      alert(id)
-      const arr = msgs.filter(i => {return i !== id})
+
+      const arr = msgs.filter(i => {return i.id !== id})
       messages.set(arr)
     })
 	beforeUpdate(() => {
