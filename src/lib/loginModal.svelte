@@ -1,5 +1,5 @@
 <script>
-    import {Button, Input, Modal, ModalHeader, ModalBody, ModalFooter} from 'sveltestrap'
+    import {Container,Row, Col,Button, Input, Modal, ModalHeader, ModalBody, ModalFooter} from 'sveltestrap'
     import {loggedIn, username} from '../stores.js'
 
     let isOpen = false;
@@ -14,9 +14,13 @@
 
 <Modal {isOpen} >
     <ModalHeader>Login</ModalHeader>
-    <ModalBody><Input {value} placeholder="Username" on:change={login}/></ModalBody>
+    <ModalBody><Input bind:value={value} placeholder="Username" on:change={login} max-length="10"/></ModalBody>
     <ModalFooter>
-        <Button style="display: inline; max-width: 48%;" block color="danger" on:click={() => {window.close()}}>CANCEL</Button>
-        <Button style="display: inline; max-width: 48%;" block color="primary" on:click={login}>LOGIN</Button>
+        <Container>
+            <Row>
+                <Col><Button class="col" block color="danger" on:click={() => {window.close()}}>CANCEL</Button></Col>
+                <Col><Button class="col" block color="primary" on:click={login}>LOGIN</Button></Col>
+            </Row>
+        </Container>
     </ModalFooter>
 </Modal>
