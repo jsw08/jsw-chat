@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "socket.io": "^4.5.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "jsw-chat_server",
+  "version": "0.0.1",
+  "description": "Server side jsw-chat",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsw08/jsw-chat.git"
+  },
+  "keywords": [
+    "nodejs",
+    "chat",
+    "serverside",
+    "server"
+  ],
+  "author": "Jurn Wubben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsw08/jsw-chat/issues"
+  },
+  "homepage": "https://github.com/jsw08/jsw-chat#readme"
+}
