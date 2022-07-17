@@ -1,4 +1,5 @@
 <script>
+    //@ts-ignore
     import {Container,Row, Col,Button, Input, Modal, ModalHeader, ModalBody, ModalFooter} from 'sveltestrap'
     import {loggedIn, username} from '../stores.js'
 

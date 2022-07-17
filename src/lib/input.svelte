@@ -1,7 +1,14 @@
 <script>
-    import {Navbar,Input} from 'sveltestrap'
+    export let socket
     import {messages, username, loggedIn} from '../stores.js'
-    import {onMount} from 'svelte'
+    //@ts-ignore
+    import {Navbar,Input} from 'sveltestrap'
+
+    const commands = {
+        "/login" : (v) => {
+            alert(`Password: "${v.trim()}"`)
+        }
+    }
 
     let value;
     let Messages
@@ -13,14 +20,21 @@
     messages.subscribe(v => {Messages = v})
 
     const send = () => {
-        alert(Username)
-        if (value.trim()) {
+        if (value.trim() && commands[value.trim().split(" ")[0]] === undefined) {
             let time = new Date
             let hours = time.getHours()
             let minutes = time.getMinutes()
+
             messages.set([...Messages, {username:Username, message: value, fromMe: true, time: `${hours}:${minutes}`}])
+            socket.emit('message', {username:Username, message: value, fromMe: false, time: `${hours}:${minutes}`})
+            
             value = ""
-        }   
+        } else if (commands[value.trim().split(" ")[0]] !== undefined) {
+            let v = value.trim().replace(value.trim().split(" ")[0], "")
+            commands[value.trim().split(" ")[0]](v)
+        } else if (value.trim().split(" ")[0][0] === "/") {
+            alert("That is not a command.")
+        }
     }
     
 </script>

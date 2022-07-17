@@ -1,9 +1,14 @@
 <script>
+    import { io } from "socket.io-client";
     import {messages} from '../stores.js'
     import Bubble from './bubble.svelte'
     import Input from './input.svelte'
     
+    const socket = io()
+    
     let msgs;
+
+    socket.on("message", v => messages.set([...msgs, v]))
 
     messages.subscribe(v => {msgs = v})
 </script>
@@ -14,4 +19,4 @@
     </div>
     {/each}
 </div>
-<Input/>
+<Input {socket}/>
