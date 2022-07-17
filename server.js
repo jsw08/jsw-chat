@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-app.use("dist")
+app.use(express.static('dist'))
 
 io.on('connection', (socket) => {
   socket.on("message",m => {
