@@ -8,8 +8,10 @@ const io = new Server(server);
 app.use(express.static('dist'))
 
 io.on('connection', (socket) => {
+  console.log("User connected")
   socket.on("message",m => {
-    io.emit(m)
+    console.log(m)
+    socket.broadcast.emit('message', m);
   })
 });
 
